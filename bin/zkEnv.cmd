@@ -14,8 +14,12 @@ REM WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 REM See the License for the specific language governing permissions and
 REM limitations under the License.
 
-set ZOOCFGDIR=%~dp0%..\conf
-set ZOO_LOG_DIR=%~dp0%..\logs
+if not defined ZOOCFGDIR (
+  set ZOOCFGDIR=%~dp0%..\conf
+)
+if not defined ZOO_LOG_DIR (
+  set ZOO_LOG_DIR=%~dp0%..\logs
+)
 
 REM for sanity sake assume Java 1.6
 REM see: http://java.sun.com/javase/6/docs/technotes/tools/windows/java.html
@@ -29,7 +33,9 @@ SET CLASSPATH=%~dp0..\*;%~dp0..\lib\*;%CLASSPATH%
 REM make it work for developers
 SET CLASSPATH=%~dp0..\build\classes;%~dp0..\build\lib\*;%CLASSPATH%
 
-set ZOOCFG=%ZOOCFGDIR%\zoo.cfg
+if not defined ZOOCFG (
+  set ZOOCFG=%ZOOCFGDIR%\zoo.cfg
+)
 
 @REM setup java environment variables
 
